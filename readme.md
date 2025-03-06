@@ -33,31 +33,31 @@
 - [x] Genre
   - [x] name (String) 
 
-- [ ] Country
-  - [ ] name (String) 
-  - [ ] flag (Image) 
+- [x] Country
+  - [x] name (String) 
+  - [x] flag (Image?) 
 
-- [ ] Creator
-  - [ ] name (String)
-  - [ ] surname (String)
-  - [ ] country (-> Country)
-  - [ ] date_of_birth (Date)
-  - [ ] date_of_death (Date)
-  - [ ] biography (String) 
+- [x] Creator
+  - [x] name (String)
+  - [x] surname (String)
+  - [x] country (-> Country)
+  - [x] date_of_birth (Date)
+  - [x] date_of_death (Date)
+  - [x] biography (String) 
   - [ ] awards (n:m -> ??)
-  - [ ] acting (n:m -> Movie)
-  - [ ] directing (n:m -> Movie) 
+  - [x] acting (n:m -> Movie)
+  - [x] directing (n:m -> Movie) 
 
-- [ ] Movie
-  - [ ] title_orig (String)
-  - [ ] title_cz (String)
-  - [ ] genres (n:m -> Genre)
-  - [ ] countries (n:m -> Country)
-  - [ ] length (Integer)
-  - [ ] actors (n:m -> Creator)
-  - [ ] directors (n:m -> Creator)
-  - [ ] description (String)
-  - [ ] released_date (Date)
+- [x] Movie
+  - [x] title_orig (String)
+  - [x] title_cz (String)
+  - [x] genres (n:m -> Genre)
+  - [x] countries (n:m -> Country)
+  - [x] length (Integer)
+  - [x] actors (n:m -> Creator)
+  - [x] directors (n:m -> Creator)
+  - [x] description (String)
+  - [x] released_date (Date)
   - [ ] rating (Float)
   - [ ] images (1:n -> ??)
   - [ ] video_url (String)
@@ -71,7 +71,39 @@
   - [ ] updated (DateTime) 
 
 - [ ] User (defaultní z Django)
+
+### Migrace 
+Migrace mění schéma databáze a skládá se ze dvou kroků:
+- `python manage.py makemigrations` - vytvoří migrační skript popisující změny
+- `python manage.py migrate` - spustí migrační skripty -> změnu schématu databáze
  
+### Administrační panel
+Musíme nejprve vytvořit superuser: `python manage.py createsuperuser`
+
+Do souboru `viewer.admin.py` zaregistrujeme vytvořený model:
+```python
+from viewer.models import Genre
+admin.site.register(Genre)
+```
+
+### DUMP/LOAD databáze
+```bash
+pip install django-dump-load-utf8
+```
+
+Přidáme `'django_dump_load_utf8',` do seznamu nainstalovaných aplikací 
+`INSTALLED_APPS` v souboru `setting.py`.
+
+#### DUMP
+```bash
+python manage.py dumpdatautf8 viewer --output .\files\fixtures.json 
+```
+
+#### LOAD
+```bash
+python manage.py loaddatautf8 .\files\fixtures.json 
+```
+
 ## Django
 ### Instalace
 ```bash
