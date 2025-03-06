@@ -27,4 +27,5 @@ urlpatterns = [
     path('hello3', hello3),
     path('hello4/<str:s>', hello4),
     path('add/<int:num1>/<int:num2>/', add),
+    path('add2', add2),
 ]
