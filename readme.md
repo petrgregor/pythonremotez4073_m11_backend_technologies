@@ -1,76 +1,76 @@
 # Projekt Hollymovies
 
 ## Popis projektu 
--[ ] 1 zobrazit seznam filmů
--[ ] 2 zobrazit detaily filmu
-   -[ ] název, žánr,...
--[ ] 3 práce s filmem v databázi
-   -[ ] přidání nového filmu
-   -[ ] editace filmu
-   -[ ] mazání filmu 
--[ ] 4 zobrazit seznam herců a režisérů
--[ ] 5 zobrazit detail (biografie) herce/režiséra
--[ ] 6 práce s tvůrcem v databázi
-   -[ ] přidání nového tvůrce
-   -[ ] editace tvůrce
-   -[ ] mazání tvůrce  
--[ ] 7 filtrování filmů
-   -[ ] 1 podle žánru
-   -[ ] 2 podle země
-   -[ ] 3 podle režiséra
-   -[ ] 4 podle herce
-   -[ ] 5 podle roku
--[ ] 8 hledání 
-   -[ ] 1 filmů
-   -[ ] 2 herců/režisérů
--[ ] 9 hodnocení filmů
--[ ] 10 watchlist 
--[ ] 11 přidávání ocenění
--[ ] 12 zobrazení seznamu seriálů
--[ ] 13 zobrazení detailu seriálu/epizody
+- [ ] 1 zobrazit seznam filmů
+- [ ] 2 zobrazit detaily filmu
+  - [ ] název, žánr,...
+- [ ] 3 práce s filmem v databázi
+  - [ ] přidání nového filmu
+  - [ ] editace filmu
+  - [ ] mazání filmu 
+- [ ] 4 zobrazit seznam herců a režisérů
+- [ ] 5 zobrazit detail (biografie) herce/režiséra
+- [ ] 6 práce s tvůrcem v databázi
+  - [ ] přidání nového tvůrce
+  - [ ] editace tvůrce
+  - [ ] mazání tvůrce  
+- [ ] 7 filtrování filmů
+  - [ ] 1 podle žánru
+  - [ ] 2 podle země
+  - [ ] 3 podle režiséra
+  - [ ] 4 podle herce
+  - [ ] 5 podle roku
+- [ ] 8 hledání 
+  - [ ] 1 filmů
+  - [ ] 2 herců/režisérů
+- [ ] 9 hodnocení filmů
+- [ ] 10 watchlist 
+- [ ] 11 přidávání ocenění
+- [ ] 12 zobrazení seznamu seriálů
+- [ ] 13 zobrazení detailu seriálu/epizody
 
 ## Databáze
--[ ] Genre
-  -[ ] name (String) 
+- [x] Genre
+  - [x] name (String) 
 
--[ ] Country
-  -[ ] name (String) 
-  -[ ] flag (Image) 
+- [ ] Country
+  - [ ] name (String) 
+  - [ ] flag (Image) 
 
--[ ] Creator
-  -[ ] name (String)
-  -[ ] surname (String)
-  -[ ] country (-> Country)
-  -[ ] date_of_birth (Date)
-  -[ ] date_of_death (Date)
-  -[ ] biography (String) 
-  -[ ] awards (n:m -> ??)
-  -[ ] acting (n:m -> Movie)
-  -[ ] directing (n:m -> Movie) 
+- [ ] Creator
+  - [ ] name (String)
+  - [ ] surname (String)
+  - [ ] country (-> Country)
+  - [ ] date_of_birth (Date)
+  - [ ] date_of_death (Date)
+  - [ ] biography (String) 
+  - [ ] awards (n:m -> ??)
+  - [ ] acting (n:m -> Movie)
+  - [ ] directing (n:m -> Movie) 
 
--[ ] Movie
-  -[ ] title_orig (String)
-  -[ ] title_cz (String)
-  -[ ] genres (n:m -> Genre)
-  -[ ] countries (n:m -> Country)
-  -[ ] length (Integer)
-  -[ ] actors (n:m -> Creator)
-  -[ ] directors (n:m -> Creator)
-  -[ ] description (String)
-  -[ ] released_date (Date)
-  -[ ] rating (Float)
-  -[ ] images (1:n -> ??)
-  -[ ] video_url (String)
+- [ ] Movie
+  - [ ] title_orig (String)
+  - [ ] title_cz (String)
+  - [ ] genres (n:m -> Genre)
+  - [ ] countries (n:m -> Country)
+  - [ ] length (Integer)
+  - [ ] actors (n:m -> Creator)
+  - [ ] directors (n:m -> Creator)
+  - [ ] description (String)
+  - [ ] released_date (Date)
+  - [ ] rating (Float)
+  - [ ] images (1:n -> ??)
+  - [ ] video_url (String)
 
--[ ] Review
-  -[ ] reviewer (-> User) 
-  -[ ] movie (-> Movie)
-  -[ ] rating (Integer, 1-5 hvězdiček)
-  -[ ] comment (String) 
-  -[ ] created (DateTime)
-  -[ ] updated (DateTime) 
+- [ ] Review
+  - [ ] reviewer (-> User) 
+  - [ ] movie (-> Movie)
+  - [ ] rating (Integer, 1-5 hvězdiček)
+  - [ ] comment (String) 
+  - [ ] created (DateTime)
+  - [ ] updated (DateTime) 
 
--[ ] User (defaultní z Django)
+- [ ] User (defaultní z Django)
  
 ## Django
 ### Instalace
