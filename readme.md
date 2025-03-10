@@ -21,6 +21,9 @@
 - Dotazy (Queries)
 - Šablony (templates)
 - Class-Based Views (CBV)
+- Seznam filmů (feature 1)
+- Seznam tvůrců (feature 4)
+- Detail filmu (feature 2)
 
 ### 11. Bře 2025, Út 17:30–20:30
 ### 12. Bře 2025, St 17:30–21:00
@@ -35,8 +38,7 @@
 
 ## Popis projektu 
 - [x] 1 zobrazit seznam filmů
-- [ ] 2 zobrazit detaily filmu
-  - [ ] název, žánr,...
+- [x] 2 zobrazit detaily filmu
 - [ ] 3 práce s filmem v databázi
   - [ ] přidání nového filmu
   - [ ] editace filmu

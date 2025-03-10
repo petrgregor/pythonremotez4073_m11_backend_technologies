@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ movie.title_orig }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ movie.title_orig }}</h1>
+    <div>{{ movie.title_cz }}</div>
+    <div>Žánry:
+        {% for genre in movie.genres.all %}
+            {{ genre }}
+        {% empty %}
+            Nejsou definované žádné žánry pro tento film.
+        {% endfor %}
+    </div>
+    <div>Země:
+        {% for country in movie.countries.all %}
+            {{ country }}
+        {% empty %}
+            Nejsou definované žádné země pro tento film.
+        {% endfor %}
+    </div>
+    <div>Délka: {{ movie.length }} min</div> {% comment %}TODO: Převést minuty na h:mm{% endcomment %}
+    <div>Datum premiéry: {{ movie.released_date }}</div> {% comment %}TODO: Upravit formát data na český tvar{% endcomment %}
+    <div>Režie:
+        {% for director in movie.directors.all %}
+            {{ director }}
+        {% empty %}
+            Nejsou definovaní žání režiséři pro tento film.
+        {% endfor %}
+    </div>
+    <div>Hrají:
+        {% for actor in movie.actors.all %}
+            {{ actor }}
+        {% empty %}
+            Nejsou definovaní žádní herci pro tento film.
+        {% endfor %}
+    </div>
+    <div>{{ movie.description }}</div>
+    <div>Přidáno do databáze: {{ movie.created }}</div>{% comment %}TODO: Upravit formát data na český tvar{% endcomment %}
+    <div>Poslední úprava: {{ movie.updated }}</div>{% comment %}TODO: Upravit formát data na český tvar{% endcomment %}
+{% endblock %}

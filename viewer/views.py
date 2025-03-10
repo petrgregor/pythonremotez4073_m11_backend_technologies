@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from viewer.models import Movie, Creator
 
@@ -37,6 +37,12 @@ class MoviesListView(ListView):
     # pozor, do template se posílají data pod názvem 'object_list'
     # nebo můžu přejmenovat
     context_object_name = 'movies'
+
+
+class MovieDetailView(DetailView):
+    template_name = 'movie.html'
+    model = Movie
+    context_object_name = 'movie'
 
 
 class CreatorsListView(ListView):

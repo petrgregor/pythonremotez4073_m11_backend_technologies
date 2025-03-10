@@ -73,3 +73,5 @@ class Movie(Model):
 
     def __str__(self):
         return f"{self.title_orig} ({self.released_date.year})"
+
+    # TODO: Definovat metodu pro převod délky filmu z minut na formát h:mm
