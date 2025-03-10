@@ -1,5 +1,30 @@
 # Projekt Hollymovies
 
+## Sylabus
+### 5. Bře 2025, St 17:30–21:00
+- Prošli jsme slidy 1-15
+
+### 6. Bře 2025, Čt 17:30–20:30
+- Prošli jsme slidy 16-32
+- ORM
+- migrace
+- shell
+- fixtures
+
+### 10. Bře 2025, Po 17:30–21:00
+- dotazy (Queries)
+
+### 11. Bře 2025, Út 17:30–20:30
+### 12. Bře 2025, St 17:30–21:00
+### 13. Bře 2025, Čt 17:30–20:30
+### 24. Bře 2025, Po 17:30–20:30
+### 25. Bře 2025, Út 17:30–20:30
+### 26. Bře 2025, St 17:30–20:30
+### 27. Bře 2025, Čt 17:30–20:30
+### 31. Bře 2025, Po 17:30–20:30
+### 1. Dub 2025, Út 17:30–21:00
+### 3. Dub 2025, Čt 17:30–21:30
+
 ## Popis projektu 
 - [ ] 1 zobrazit seznam filmů
 - [ ] 2 zobrazit detaily filmu
@@ -29,6 +54,66 @@
 - [ ] 12 zobrazení seznamu seriálů
 - [ ] 13 zobrazení detailu seriálu/epizody
 
+
+## Django
+### Instalace
+```bash
+pip install django
+```
+```bash
+pip freeze > requirements.txt
+```
+
+### Struktura projektu
+- `holymovies` - složka projektu (obsahuje informace o celém projektu)
+  - `__init__.py` - je zde jen proto, aby daná složka byla package
+  - `asgi.py` - nebudeme potřebovat
+  - `settings.py` - nastavení projektu
+  - `urls.py` - zde jsou nastavené url cesty
+  - `wsgi.py` - nebudeme potřebovat
+- `manage.py` - hlavní skript pro práci s projektem (spouštění serveru, testů, migrací,...)
+
+### Spuštění serveru
+```bash
+python manage.py runserver
+```
+
+Případně můžeme zadat ručně číslo portu:
+```bash
+python manage.py runserver 8001
+```
+
+### Aplikace
+#### Vytvoření aplikace
+```bash
+python manage.py startapp <nazev_aplikace>
+```
+
+> [!WARNING]
+> Nesmíme zapomenou zaregistrovat aplikaci do souboru `settings.py`:
+> ```python
+> INSTALLED_APPS = [
+>     'django.contrib.admin',
+>     'django.contrib.auth',
+>     'django.contrib.contenttypes',
+>     'django.contrib.sessions',
+>     'django.contrib.messages',
+>     'django.contrib.staticfiles',
+>     
+>     'viewer',
+> ]
+> ```
+
+#### Struktura aplikace
+- `viewer` - složka aplikace
+  - `migrations` - složka obsahující migrační skripty 
+  - `__init__.py` - slouží jen k tomu, aby složka byla package
+  - `admin.py` - zde budeme registrovat modely, které budeme chtít zobrazit v admin sekci
+  - `apps.py` - nastavení aplikace
+  - `models.py` - definice modelů (schéma databáze)
+  - `tests.py` - testy
+  - `views.py` - funkcionalita
+  
 ## Databáze
 - [x] Genre
   - [x] name (String) 
@@ -104,64 +189,95 @@ python manage.py dumpdatautf8 viewer --output .\files\fixtures.json
 python manage.py loaddatautf8 .\files\fixtures.json 
 ```
 
-## Django
-### Instalace
-```bash
-pip install django
+### Dotazy (Queries)
+#### .all()
+Vrací kolekci všech nalezených záznamů z tabulky:
+`Movie.objects.all()`
+
+#### .get()
+Vrátí jeden nalezený záznam (první, který splňuje podmínky):
+`Movie.objects.get(id=1)`
+
+#### .filter()
+Vrací kolekci záznamů, které splňují podmínky:
+`Movie.objects.filter(id=1)`
+
+`Movie.objects.filter(title_orig="The Green Mile")`
+
+`Movie.objects.filter(released_date__year=1994)`
+
+`Movie.objects.filter(released_date__year__gt=1994)` -- `__gt` => "větší než" (greater then)
+
+`Movie.objects.filter(released_date__year__gte=1994)` -- `__gte` => "větší rovno" (greater then equal)
+
+`Movie.objects.filter(released_date__year__lt=1994)` -- `__lt` => "menší než" (less then)
+
+`Movie.objects.filter(released_date__year__lte=1994)` -- `__lte` => "menší rovno" (less then equal)
+
+`drama = Genre.objects.get(name="Drama")`
+
+`Movie.objects.filter(genres=drama)`
+
+`Movie.objects.filter(genres=Genre.objects.get(name="Drama"))`
+
+`Movie.objects.filter(genres__name="Drama")`
+
+`Movie.objects.filter(title_orig__contains="Gump")`
+
+`Movie.objects.filter(genres__name="Drama", released_date__year=1999)` -- více podmínek, defaultně AND
+
+`Movie.objects.filter(genres__name="Drama").filter(released_date__year=1999)` -- metody lze řetězit za sebe
+
+`Movie.objects.filter(title_orig__in=["Forrest Gump", "The Green Mile"])`
+
+`Movie.objects.filter(released_date__year=1994)`
+
+`Movie.objects.exclude(released_date__year=1994)`
+
+Test, zda existuje alespoň jeden záznam s danou podmínkou:
+`Movie.objects.filter(released_date__year=1994).exists()`
+
+Počet záznamů s danou podmínkou:
+`Movie.objects.filter(released_date__year=1994).count()`
+
+Uspořádání výsledků `.order_by()`:
+`Movie.objects.all()`
+
+`Movie.objects.all().order_by("released_date")` -- uspořádání vzestupně
+
+`Movie.objects.all().order_by("-released_date")` -- uspořádání sestupně
+
+Agregační funkce:
+`from django.db.models import Avg, Min, Max`
+
+`Movie.objects.aggregate(Avg("length"))`
+
+`Movie.objects.aggregate(Avg("length"), Min("length"), Max("length"))`
+
+Group_by:
+`from django.db.models import Count`
+
+`Movie.objects.values("genres").annotate(count=Count("genres"))`
+
+#### Vytváření (Create)
+`Genre.objects.create(name='Dokumentární')`
+
+```python
+scifi = Genre(name="Sci-fi")
+scifi.save()
 ```
-```bash
-pip freeze > requirements.txt
+
+#### Aktualizece (Update)
+`Movie.objects.filter(released_date__year=1994).update(length=123)`
+
+```python
+movie = Movie.objects.get(title_orig="Forrest Gump")
+movie.length = 222
+movie.save()
 ```
 
-### Struktura projektu
-- `holymovies` - složka projektu (obsahuje informace o celém projektu)
-  - `__init__.py` - je zde jen proto, aby daná složka byla package
-  - `asgi.py` - nebudeme potřebovat
-  - `settings.py` - nastavení projektu
-  - `urls.py` - zde jsou nastavené url cesty
-  - `wsgi.py` - nebudeme potřebovat
-- `manage.py` - hlavní skript pro práci s projektem (spouštění serveru, testů, migrací,...)
-
-### Spuštění serveru
-```bash
-python manage.py runserver
-```
-
-Případně můžeme zadat ručně číslo portu:
-```bash
-python manage.py runserver 8001
-```
-
-### Aplikace
-#### Vytvoření aplikace
-```bash
-python manage.py startapp <nazev_aplikace>
-```
-
-> [!WARNING]
-> Nesmíme zapomenou zaregistrovat aplikaci do souboru `settings.py`:
-> ```python
-> INSTALLED_APPS = [
->     'django.contrib.admin',
->     'django.contrib.auth',
->     'django.contrib.contenttypes',
->     'django.contrib.sessions',
->     'django.contrib.messages',
->     'django.contrib.staticfiles',
->     
->     'viewer',
-> ]
-> ```
-
-#### Struktura aplikace
-- `viewer` - složka aplikace
-  - `migrations` - složka obsahující migrační skripty 
-  - `__init__.py` - slouží jen k tomu, aby složka byla package
-  - `admin.py` - zde budeme registrovat modely, které budeme chtít zobrazit v admin sekci
-  - `apps.py` - nastavení aplikace
-  - `models.py` - definice modelů (schéma databáze)
-  - `tests.py` - testy
-  - `views.py` - funkcionalita
+#### Mazání (Delete)
+`Genre.objects.get(name="Dokumentární").delete()`
 
 # Rady pro finální projekt
 - jeden člen týmu vytvoří projekt
