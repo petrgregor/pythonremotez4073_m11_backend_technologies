@@ -20,6 +20,7 @@
 ### 10. Bře 2025, Po 17:30–21:00
 - Dotazy (Queries)
 - Šablony (templates)
+- Class-Based Views (CBV)
 
 ### 11. Bře 2025, Út 17:30–20:30
 ### 12. Bře 2025, St 17:30–21:00
