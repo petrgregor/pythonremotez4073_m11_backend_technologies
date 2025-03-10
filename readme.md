@@ -41,7 +41,7 @@
   - [ ] přidání nového filmu
   - [ ] editace filmu
   - [ ] mazání filmu 
-- [ ] 4 zobrazit seznam herců a režisérů
+- [x] 4 zobrazit seznam herců a režisérů
 - [ ] 5 zobrazit detail (biografie) herce/režiséra
 - [ ] 6 práce s tvůrcem v databázi
   - [ ] přidání nového tvůrce

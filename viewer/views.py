@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView, ListView
 
-from viewer.models import Movie
+from viewer.models import Movie, Creator
 
 
 def home(request):
@@ -37,3 +37,9 @@ class MoviesListView(ListView):
     # pozor, do template se posílají data pod názvem 'object_list'
     # nebo můžu přejmenovat
     context_object_name = 'movies'
+
+
+class CreatorsListView(ListView):
+    template_name = 'creators.html'
+    model = Creator
+    context_object_name = 'creators'

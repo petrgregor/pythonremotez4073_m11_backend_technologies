@@ -28,4 +28,5 @@ urlpatterns = [
     #path('movies/', MoviesView.as_view(), name='movies'),
     #path('movies/', MoviesTemplateView.as_view(), name='movies'),
     path('movies/', MoviesListView.as_view(), name='movies'),
+    path('creators/', CreatorsListView.as_view(), name='creators'),
 ]
