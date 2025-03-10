@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Seznam filmů
+{% endblock %}
+
+{% block content %}
+    <h1>Filmy</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

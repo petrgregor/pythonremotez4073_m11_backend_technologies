@@ -3,16 +3,23 @@
 ## Sylabus
 ### 5. Bře 2025, St 17:30–21:00
 - Prošli jsme slidy 1-15
+- Úvod
+- Vytvoření projektu
+- Vytvoření aplikace
+- Návrh funkcionality
+- Návrh databáze
 
 ### 6. Bře 2025, Čt 17:30–20:30
 - Prošli jsme slidy 16-32
-- ORM
+- ORM - modely (Genre, Country, Creator, Movie)
 - migrace
+- admin panel
 - shell
 - fixtures
 
 ### 10. Bře 2025, Po 17:30–21:00
-- dotazy (Queries)
+- Dotazy (Queries)
+- Šablony (templates)
 
 ### 11. Bře 2025, Út 17:30–20:30
 ### 12. Bře 2025, St 17:30–21:00
@@ -26,7 +33,7 @@
 ### 3. Dub 2025, Čt 17:30–21:30
 
 ## Popis projektu 
-- [ ] 1 zobrazit seznam filmů
+- [x] 1 zobrazit seznam filmů
 - [ ] 2 zobrazit detaily filmu
   - [ ] název, žánr,...
 - [ ] 3 práce s filmem v databázi
